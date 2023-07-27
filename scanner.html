@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode Scanner</title>
+  <script src="https://unpkg.com/quagga"></script>
+</head>
+<body>
+  <!-- Container for the barcode scanner -->
+  <div id="interactive" class="viewport"></div>
+
+  <script>
+    // Function to handle barcode detection and redirection
+    function onBarcodeDetected(result) {
+      var barcodeData = result.codeResult.code;
+      window.location.href = barcodeData; // Redirect to the URL encoded in the barcode
+    }
+
+    // Set up the configuration for the scanner
+    Quagga.init({
+      inputStream: {
+        name: "Live",
+        type: "LiveStream",
+        target: "#interactive",
+      },
+      decoder: {
+        readers: ["code_128_reader"], // Use the same format used for barcode generation
+      },
+    });
+
+    // Add an event listener to handle the scanned results
+    Quagga.onDetected(onBarcodeDetected);
+
+    // Start the scanner when the page is ready
+    Quagga.start();
+  </script>
+</body>
+</html>

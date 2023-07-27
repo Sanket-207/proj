@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode Generation</title>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+  <!-- Container for the generated barcode -->
+  <div id="barcode-container"></div>
+
+  <script>
+    // Function to generate the barcode with encoded URL
+    function generateBarcodeWithURL() {
+      var websiteURL = "https://www.example.com"; // Replace with your desired URL
+      JsBarcode("#barcode-container", websiteURL, {
+        format: "CODE128", // You can choose other barcode formats as well
+        displayValue: false // Hide the text representation of the URL in the barcode
+      });
+    }
+
+    // Call the function to generate the barcode
+    generateBarcodeWithURL();
+  </script>
+</body>
+</html>
